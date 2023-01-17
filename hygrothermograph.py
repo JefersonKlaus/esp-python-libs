@@ -10,7 +10,7 @@ class HygrothermographTypeOptions:
 class Hygrothermograph:
     dht = None
 
-    def __init__(self, data_pin=13, type=HygrothermographTypeOptions.BLUE):
+    def __init__(self, data_pin=18, type=HygrothermographTypeOptions.BLUE):
         if type == HygrothermographTypeOptions.BLUE:
             self.dht = DHT11(Pin(data_pin))
         elif type == HygrothermographTypeOptions.WHITE:
@@ -19,13 +19,19 @@ class Hygrothermograph:
             TypeError("type needs to be WHITE or BLUE")
 
     def get_temperature(self):
+        """
+        Degrees Celsius
+        """
         self.dht.measure()
-        return self.temperature()
+        return self.dht.temperature()
 
     def get_humidity(self):
+        """
+        Percentage of relative humidity
+        """
         self.dht.measure()
-        return self.humidity()
+        return self.dht.humidity()
 
     def get_temperature_and_humidity(self):
         self.dht.measure()
-        return self.temperature(), self.humidity()
+        return self.dht.temperature(), self.dht.humidity()

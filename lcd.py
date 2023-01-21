@@ -1,7 +1,7 @@
 import time
 from time import sleep_ms
 
-from machine import SoftI2C, Pin
+from machine import Pin, SoftI2C
 
 # The PCF8574 has a jumper selectable address: 0x20 - 0x27
 
@@ -231,14 +231,17 @@ class LcdBase:
         """
         time.sleep_us(usecs)
 
+
 """
 LCD I2C
+from lcs import I2cLcd
 lcd = I2cLcd(scl_pin=14, sda_pin=13)
 lcd.move_to(0, 0)
 lcd.put_str("Temp.      %.2f" % temperatura)
 lcd.move_to(0, 1)
 lcd.put_str("Humidade   %.2f" % humidity)
 """
+
 
 class I2cLcd(LcdBase):
 

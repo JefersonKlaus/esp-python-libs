@@ -29,14 +29,32 @@ from potentiometer import Potentiometer
 potentiometer = Potentiometer(pin=36)
 print(potentiometer.get_value_in_scale(out_scale_min=0, out_scale_max=100)
 
-#SERVO
+
+# SERVO
 from servo import Servo
 servo = Servo(pin_number=15, max_degree=180, freq=50, nit_duty=0)
 servo.set_degree(degree=180)
 
-#SONAR
+
+# SONAR
 from sonar import Sonar
 sonar = Sonar(pin_in=14, pin_out=13)
 sonar.distance_mm()
 sonar.distance_cm()
+
+
+# LCD I2C
+from lcs import I2cLcd
+lcd = I2cLcd(scl_pin=14, sda_pin=13)
+lcd.move_to(0, 0)
+lcd.put_str("Temp.      %.2f" % temperatura)
+lcd.move_to(0, 1)
+lcd.put_str("Humidade   %.2f" % humidity)
+
+
+# SEP MOTOR
+from esp_libs.stepmotor import Stepmotor, StepMotorDirectionOptions
+step_motor = Stepmotor(A=32, B=33, C=25, D=26)
+step_motor.move_steps(StepMotorDirectionOptions.CLOCKWISE, 32 * 64)
+step_motor.move_degree(StepMotorDirectionOptions.CLOCKWISE, 720)
 ```

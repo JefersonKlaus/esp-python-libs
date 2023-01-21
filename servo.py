@@ -34,6 +34,9 @@ class Servo:
         :param degree: int
         :return:
         """
+        if degree > self.max_degree:
+            raise ValueError("Degree cannot be greater than " + self.max_degree)
+
         duty = int(
             scale_value(
                 value=degree, in_min=0, in_max=self.max_degree, out_min=26, out_max=128

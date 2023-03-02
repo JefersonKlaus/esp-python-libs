@@ -82,4 +82,5 @@ class Stepmotor(object):
         self.move_steps(direction, steps, us)
 
     def stop(self):
+        "After all moviments use this method to turn off the step motor"
         self._motor_control(0x00)

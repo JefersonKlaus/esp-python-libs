@@ -31,15 +31,28 @@ class Servo:
     def set_degree(self, degree):
         """
         Set degree position
-        :param degree: int
-        :return:
+        Args:
+            degree (int):
+        Returns:
+            None
         """
-        if degree > self.max_degree:
-            raise ValueError("Degree cannot be greater than " + self.max_degree)
-
         duty = int(
             scale_value(
                 value=degree, in_min=0, in_max=self.max_degree, out_min=26, out_max=128
             )
         )
         self.pwm.duty(duty)
+
+    def get_degree(self):
+        """
+        Get degree position
+        Returns:
+            Int: Position in degrees
+        """
+        _duty = self.pwm.duty()
+        degree = int(
+            scale_value(
+                value=_duty, in_min=26, in_max=128, out_min=0, out_max=self.max_degree
+            )
+        )
+        return degree

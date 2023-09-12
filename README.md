@@ -53,7 +53,7 @@ lcd.put_str("Humidade   %.2f" % humidity)
 
 
 # SEP MOTOR
-from esp_libs.stepmotor import Stepmotor, StepMotorDirectionOptions
+from stepmotor import Stepmotor, StepMotorDirectionOptions
 step_motor = Stepmotor(A=32, B=33, C=25, D=26)
 step_motor.move_steps(StepMotorDirectionOptions.CLOCKWISE, 32 * 64)
 step_motor.move_degree(StepMotorDirectionOptions.CLOCKWISE, 720)
@@ -61,7 +61,7 @@ step_motor.stop()
 
 
 # THERMISTOR
-from esp_libs.thermistor import Thermistor
+from thermistor import Thermistor
 from thermistor import Thermistor
 thermistor = Thermistor(pin=36)
 print(thermistor.get_temperature())
